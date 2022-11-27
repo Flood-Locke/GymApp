@@ -28,7 +28,7 @@ namespace GymApp.Controllers
             //Fetching data from other website may fail do to network, etc
             try
             {
-                string url = "https://ipinfo.io?token=1b5ea1d36304f9";
+                string url = "https://ipinfo.io?token=";
                 var info = new WebClient().DownloadString(url);
                 ipInfo = JsonConvert.DeserializeObject<IPInfo>(info);//Take JSON and turning it into an object
                 RegionInfo myRI1 = new RegionInfo(ipInfo.Country);
