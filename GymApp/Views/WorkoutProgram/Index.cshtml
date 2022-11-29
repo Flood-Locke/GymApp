@@ -1,35 +1,42 @@
 ﻿@model IEnumerable<WorkoutProgram>
 
-<div class="album py-5 bg-light">
+@{
+    bool isAuthenticated = User.Identity?.IsAuthenticated == true;
+}
+
+<section class="space-sm flush-with-above">
     <div class="container">
-        <div class="row">
-            @foreach(var item in Model)
+        <ul class="row feature-list feature-list-sm">
+            @foreach(var workOut in Model)
             {
-                <div class="col-md-4">
-                <div class="card mb-4 box-shadow">
-                <img class="card-img-top" src="@item.Image" width = "100%" height = "225" alt="Card image cap">
-                <div class="card-body">
-                    <p class="card-text">@item.Title</p>
-                    <p class="card-text">@item.Description</p>
-                    <div class="d-flex justify-content-between align-items-center">
-                    <div class="btn-group">
-                        <a type="btn btn-success" asp-controller="WorkoutProgram" asp-action="Detail" asp-route-id = "@item.Id" 
-                        class="btn btn-sm btn-outline-secondary">View</a>
-                        @if (User.Identity.IsAuthenticated && User.IsInRole("admin"))
-                        {
-                            <a type="btn btn-success" asp-controller="WorkoutProgram" asp-action="Edit" asp-route-id = "@item.Id" 
-                            class="btn btn-sm btn-outline-secondary">Edit</a>
-                            <a type="btn btn-success" asp-controller="WorkoutProgram" asp-action="Delete" asp-route-id = "@item.Id" 
-                            class="btn btn-sm btn-outline-secondary">Delete</a>                 
-                        }
-                                    
+                <li class="col-12 col-md-6 col-lg-4">
+                    <div class="card">
+                        <a type="button" asp-controller="WorkoutProgram" asp-action="Detail" asp-route-id = "@workOut.Id"> 
+                            <img class="card-img-top" src="@workOut.Image" alt="Card image cap">
+                        </a>
+                        <div class="card-body">
+                            <h4 class="card-title">@workOut.Title</h4>
+                            <p class="card-text">@workOut.Description</p>
+                        </div>
+                        <div class="card-footer card-footer-borderless d-flex justify-content-between">
+                            <div>
+                                <small>@workOut.WorkoutProgramCategory</small>
+                            </div>
+                            @if (User.Identity.IsAuthenticated && User.IsInRole("admin"))
+                            {
+                                <div>
+                                    <a type="button" class="btn btn-sm btn-outline-info" asp-controller="WorkoutProgram" asp-action="Edit" asp-route-id="@workOut.Id">
+                                        Edit
+                                    </a>
+                                    <a type="button" class="btn btn-sm btn-outline-danger" asp-controller="WorkoutProgram" asp-action="Delete" asp-route-id="@workOut.Id">
+                                        Delete
+                                    </a>
+                                </div>                 
+                            }
+                        </div>
                     </div>
-                    <small class="text-muted">@item.WorkoutProgramCategory</small>
-                    </div>
-                </div>
-                </div>
-            </div>
+                </li>
             }
-        </div>
+        </ul>
     </div>
-</div>
+</section>
