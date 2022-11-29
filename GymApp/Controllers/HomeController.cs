@@ -2,7 +2,9 @@
 using GymApp.Interfaces;
 using GymApp.Models;
 using GymApp.ViewModels;
+using GymApp.Data;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Identity;
 using Newtonsoft.Json;
 using System.Diagnostics;
 using System.Globalization;
@@ -12,13 +14,17 @@ namespace GymApp.Controllers
 {
     public class HomeController : Controller
     {
+        private readonly UserManager<AppUser> _userManager;
+        private readonly SignInManager<AppUser> _signInManager;
         private readonly ILogger<HomeController> _logger;
         private readonly IGymRepository _gymRepository;
 
-        public HomeController(ILogger<HomeController> logger, IGymRepository gymRepository)
+        public HomeController(ILogger<HomeController> logger, IGymRepository gymRepository, UserManager<AppUser> userManager, SignInManager<AppUser> signInManager)
         {
             _logger = logger;
             _gymRepository = gymRepository;
+            _userManager = userManager;
+            _signInManager = signInManager;
         }
 
         public async Task<IActionResult> Index()
@@ -51,6 +57,35 @@ namespace GymApp.Controllers
             }
             return View(homeViewModel);
         }
+
+        [HttpPost]
+        public async Task<IActionResult> Register(HomeUserCreateViewModel createVM)
+        {
+            if (!ModelState.IsValid) return View(createVM);
+
+            var user = await _userManager.FindByEmailAsync(createVM.Email);
+            if (user != null)
+            {
+                TempData["Error"] = "This email address is already in use";
+                return View(createVM);
+            }
+
+            var newUser = new AppUser
+            {
+                UserName = createVM.UserName,
+                Email = createVM.Email,
+            };
+
+            var newUserResponse = await _userManager.CreateAsync(newUser, createVM.Password);
+
+            if (newUserResponse.Succeeded)
+            {
+                await _signInManager.SignInAsync(newUser, isPersistent: false);
+                await _userManager.AddToRoleAsync(newUser, UserRoles.User);
+            }
+            return RedirectToAction("Index", "Gym");
+        }
+
 
         public IActionResult Privacy()
         {
