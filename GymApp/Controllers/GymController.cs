@@ -9,19 +9,20 @@ namespace GymApp.Controllers
     {
         private readonly IGymRepository _gymRepository;
         private readonly IPhotoService _photoService;
-        private readonly IHttpContextAccessor _httpContextAccessor;
+        //private readonly IHttpContextAccessor _httpContextAccessor;
 
-        public GymController(IGymRepository gymRepository, IPhotoService photoService, IHttpContextAccessor httpContextAccessor)
+        public GymController(IGymRepository gymRepository, IPhotoService photoService)
         {
 
             _gymRepository = gymRepository;
             _photoService = photoService;
-            _httpContextAccessor = httpContextAccessor;
+            //_httpContextAccessor = httpContextAccessor;
         }
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(int pageNumber = 1)
         {
             IEnumerable<Gym> gyms = await _gymRepository.GetAll();
-            return View(gyms);
+            var gymViewModel = new IndexGymViewModel(gyms, pageNumber, 5);
+            return View(gymViewModel);
         }
 
         public async Task<IActionResult> Detail(int id)
@@ -32,7 +33,7 @@ namespace GymApp.Controllers
 
         public IActionResult Create()
         {
-            var curUserId = _httpContextAccessor.HttpContext.User.GetUserId();
+            var curUserId = HttpContext.User.GetUserId();
             var createGymViewModel = new CreateGymViewModel { AppUserId = curUserId };
             return View(createGymViewModel);
         }
