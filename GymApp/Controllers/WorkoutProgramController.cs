@@ -31,6 +31,7 @@ namespace GymApp.Controllers
             return View(workoutProgram);
         }
 
+        [HttpGet]
         public IActionResult Create()
         {
             var curUser = _httpContextAccessor.HttpContext?.User.GetUserId();
@@ -84,56 +85,45 @@ namespace GymApp.Controllers
             if (!ModelState.IsValid)
             {
                 ModelState.AddModelError("", "Failed to edit workout program");
-                return View("Edit", workoutProgramVM);
+                return View(workoutProgramVM);
             }
 
             var userWorkoutProgram = await _workoutProgramRepository.GetByIdAsyncNoTracking(id);
 
-            if (userWorkoutProgram != null)
+            if (userWorkoutProgram == null)
             {
-                try
-                {
-                    await _photoService.DeletePhotoAsync(userWorkoutProgram.Image);
-                }
-                catch (Exception ex)
-                {
-                    ModelState.AddModelError("", "Could not delete photo");
-                    return View(workoutProgramVM);
-                }
-
-                var photoResult = await _photoService.AddPhotoAsync(workoutProgramVM.Image);
-
-                if (photoResult.Error != null)
-                {
-                    ModelState.AddModelError("Image", "Photo upload failed");
-                    return View(workoutProgramVM);
-                }
-
-                //if (!string.IsNullOrEmpty(userGym.Image))
-                //{
-                //    _ = _photoService.DeletePhotoAsync(userGym.Image);
-                //}
-
-                var workoutProgram = new WorkoutProgram
-                {
-                    Id = id,
-                    Title = workoutProgramVM.Title,
-                    Description = workoutProgramVM.Description,
-                    Image = photoResult.Url.ToString(),
-                    //AddressId = gymVM.AddressId,
-                    //Address = gymVM.Address,
-                };
-
-                _workoutProgramRepository.Update(workoutProgram);
-
-                return RedirectToAction("Index");
+                return View("Error");
             }
-            else
+
+            var photoResult = await _photoService.AddPhotoAsync(workoutProgramVM.Image);
+
+            if (photoResult.Error != null)
             {
+                ModelState.AddModelError("Image", "Photo upload failed");
                 return View(workoutProgramVM);
             }
+
+            if (!string.IsNullOrEmpty(userWorkoutProgram.Image))
+            {
+                _ = _photoService.DeletePhotoAsync(userWorkoutProgram.Image);
+            }
+            var workoutProgram = new WorkoutProgram
+            {
+                Id = id,
+                Title = workoutProgramVM.Title,
+                Description = workoutProgramVM.Description,
+                Image = photoResult.Url.ToString(),
+                //AddressId = gymVM.AddressId,
+                //Address = gymVM.Address,
+            };
+
+            _workoutProgramRepository.Update(workoutProgram);
+
+            return RedirectToAction("Index");
+
         }
 
+        [HttpGet]
         public async Task<ActionResult> Delete(int id)
         {
             var workoutProgramDetails = await _workoutProgramRepository.GetByIdAsync(id);
@@ -146,7 +136,11 @@ namespace GymApp.Controllers
         {
             var workoutProgramDetails = await _workoutProgramRepository.GetByIdAsync(id);
             if (workoutProgramDetails == null) return View("Error");
-
+            if (!string.IsNullOrEmpty(workoutProgramDetails.Image))
+            {
+                _ = _photoService.DeletePhotoAsync(workoutProgramDetails.Image);
+            }
+            
             _workoutProgramRepository.Delete(workoutProgramDetails);
             return RedirectToAction("Index");
         }

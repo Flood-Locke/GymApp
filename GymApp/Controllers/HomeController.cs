@@ -9,6 +9,7 @@ using Newtonsoft.Json;
 using System.Diagnostics;
 using System.Globalization;
 using System.Net;
+using GymmApp.ViewModels;
 
 namespace GymApp.Controllers
 {
@@ -41,33 +42,73 @@ namespace GymApp.Controllers
                 ipInfo.Country = myRI1.EnglishName;
                 homeViewModel.City = ipInfo.City;
                 homeViewModel.Province = ipInfo.Region;
+
                 if (homeViewModel.City != null)
                 {
                     homeViewModel.Gyms = await _gymRepository.GetGymByCity(homeViewModel.City);
                 }
-                else
-                {
-                    homeViewModel.Gyms = null;
-                }
                 return View(homeViewModel);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 homeViewModel.Gyms = null;
             }
             return View(homeViewModel);
         }
+        //        public IActionResult Register()
+        //        {
+        //            var response = new HomeUserCreateViewModel();
+        //            return View(response);
+        //        }
+
+        //        [HttpPost]
+        //        public async Task<IActionResult> Register(HomeUserCreateViewModel createVM)
+        //        {
+        //            if (!ModelState.IsValid) return View(createVM);
+        //            var user = await _userManager.FindByEmailAsync(createVM.Email);
+        //            if (user != null)
+        //            {
+        //                ModelState.AddModelError("Register.Email", "This email is already in user");
+        //                return View(createVM);
+        //            }
+        //            var newUser = new AppUser
+        //            {
+        //                UserName = createVM.UserName,
+        //                Email = createVM.Email,
+        //            };
+        //            var newUserResponse = await _userManager.CreateAsync(newUser, createVM.Password);
+        //            if (newUserResponse.Succeeded)
+        //            {
+        //                await _signInManager.SignInAsync(newUser, isPersistent: false);
+        //                await _userManager.AddToRoleAsync(newUser, UserRoles.User);
+        //            }
+        //            return RedirectToAction("Index", "Gym");
+        //        }
+
+        //        public IActionResult Privacy()
+        //        {
+        //            return View();
+        //        }
+        //        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
+        //        public IActionResult Error()
+        //        {
+        //            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        //        }
+        //    }
+        //}
 
         [HttpPost]
-        public async Task<IActionResult> Register(HomeUserCreateViewModel createVM)
+        public async Task<IActionResult> Index(HomeViewModel homeVM)
         {
-            if (!ModelState.IsValid) return View(createVM);
+            var createVM = homeVM.Register;
+
+            if (!ModelState.IsValid) return View(homeVM);
 
             var user = await _userManager.FindByEmailAsync(createVM.Email);
             if (user != null)
             {
-                TempData["Error"] = "This email address is already in use";
-                return View(createVM);
+                ModelState.AddModelError("Register.Email", "This email is already in user");
+                return View(homeVM);
             }
 
             var newUser = new AppUser

@@ -11,7 +11,7 @@ namespace GymApp.ViewModels
         public IFormFile Image { get; set; }
         public string? URL { get; set; }
         public int? AddressId { get; set; }
-        public Address Address { get; set; }
+        public Address? Address { get; set; }
         public GymCategory GymCategory { get; set; }
     }
 }

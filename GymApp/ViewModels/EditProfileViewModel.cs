@@ -1,6 +1,6 @@
 ﻿namespace GymApp.ViewModels
 {
-    public class EditUserDashboardViewModel
+    public class EditProfileViewModel
     {
         public string Id { get; set; }
         public int? YearsOfExperience { get; set; }

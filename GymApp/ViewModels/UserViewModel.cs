@@ -1,4 +1,6 @@
-﻿namespace GymApp.ViewModels;
+﻿using GymApp.Models;
+
+namespace GymApp.ViewModels;
 
 public class UserViewModel
 {
@@ -8,12 +10,15 @@ public class UserViewModel
     public string? City { get; set; }
     public string? Province { get; set; }
     public string ProfileImageUrl { get; set; }
+    public IEnumerable<Gym>? Gyms { get; set; }
+    public IEnumerable<WorkoutProgram>? WorkoutPrograms { get; set; }
 
-    //public string location => (city, province) switch
-    //{
-    //    (string city, string state) => $"{city}, {state}",
-    //    (string city, null) => city,
-    //    (null, string state) => state,
-    //    (null, null) => "",
-    //};
+
+    public string Location => (City, Province) switch
+    {
+        (string city, string province) => $"{city}, {province}",
+        (string city, null) => city,
+        (null, string province) => province,
+        (null, null) => "",
+    };
 }

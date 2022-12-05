@@ -10,14 +10,16 @@ namespace GymApp.Controllers
     {
         private readonly UserManager<AppUser> _userManager;
         private readonly SignInManager<AppUser> _signInManager;
-        private readonly ApplicationDbContext _context;
+        //private readonly ApplicationDbContext _context;
         
-        public AccountController (UserManager<AppUser> userManager, SignInManager<AppUser> signInManager, ApplicationDbContext context )
+        public AccountController (UserManager<AppUser> userManager, SignInManager<AppUser> signInManager)
         {
             _userManager = userManager;
             _signInManager = signInManager;
-            _context = context;
+            //_context = context;
         }
+
+        [HttpGet]
         public IActionResult Login()
         {
             var response = new LoginViewModel();
@@ -35,7 +37,7 @@ namespace GymApp.Controllers
             {
                 //User is there, check their password
                 var passwordCheck = await _userManager.CheckPasswordAsync(user, loginViewModel.Password);
-                if(passwordCheck)
+                if (passwordCheck)
                 {
                     //Password correct, sign in
                     var result = await _signInManager.PasswordSignInAsync(user, loginViewModel.Password, false, false);
@@ -88,7 +90,18 @@ namespace GymApp.Controllers
         public async Task<IActionResult> Logout()
         {
             await _signInManager.SignOutAsync();
-            return RedirectToAction("Index", "Gym");
+            return RedirectToAction("Index", "Home");
+        }
+        [HttpGet]
+        [Route("Account/Welcome")]
+        public async Task<IActionResult> Welcome(int page = 0)
+        {
+            if (page == 0)
+            {
+                return View();
+            }
+            return View();
+
         }
     }
 }

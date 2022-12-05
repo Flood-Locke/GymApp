@@ -1,0 +1,49 @@
+﻿@using GymApp.ViewModels
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<AppUser> SignInManager
+@model ListGymsByProvinceViewModel
+
+<section class="space-sm flush-with-above">
+    <div class="container">
+        @if(Model.NoGymWarning == true)
+        {
+            <h1 class="fw-light">There are no Gyms in your area! <a asp-area="" asp-controller="Account" asp-action="Login">Login</a> !</h1>
+        }
+        else
+        {
+            <h1>Gyms in @Model.Province</h1>
+        }
+        <ul class="row feature-list feature-list-sm">
+            @foreach (var gym in Model.Gyms)
+            {
+                <li class="col-12 col-md-6 col-lg-4">
+                    <div class="card">
+                        <a type="button" asp-controller="Gym" asp-action="Detail" asp-route-id="@gym.Id">
+                            <img class="card-img-top" src="@gym.Image" alt="Card image cap">
+                        </a>
+                        <div class="card-body">
+                            <h4 class="card-title">@gym.Title</h4>
+                            <p class="card-text">@gym.Description</p>
+                        </div>
+                        <div class="card-footer card-footer-borderless d-flex justify-content-between">
+                            <div>
+                                <small>@gym.GymCategory</small>
+                            </div>
+                            @if (SignInManager.IsSignedIn(User) && User.IsInRole("admin"))
+                            {
+                                <div>
+                                    <a type="button" class="btn btn-sm btn-outline-info" asp-controller="Gym" asp-action="Edit" asp-route-id="@gym.Id">
+                                        Edit
+                                    </a>
+                                    <a type="button" class="btn btn-sm btn-outline-danger" asp-controller="Gym" asp-action="Delete" asp-route-id="@gym.Id">
+                                        Delete
+                                    </a>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </li>
+            }
+        </ul>
+    </div>  
+</section>

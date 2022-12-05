@@ -13,6 +13,9 @@ namespace GymApp.Data
         public DbSet<WorkoutProgram> WorkoutPrograms { get; set; }
         public DbSet<Gym> Gyms { get; set; }
         public DbSet<Address> Addresses { get; set; }
+        public DbSet<Province> Provinces { get; set; }
+        public DbSet<City> Cities { get; set; }
         
+
     }
 }

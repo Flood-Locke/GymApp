@@ -31,7 +31,7 @@ namespace GymApp.Tests.Controller
             _httpContextAccessor = A.Fake<HttpContextAccessor>();
 
             //SUT
-            _gymController = new GymController(_gymRepository, _photoService, _httpContextAccessor);
+            _gymController = new GymController(_gymRepository, _photoService);
         }
 
         [Fact]
