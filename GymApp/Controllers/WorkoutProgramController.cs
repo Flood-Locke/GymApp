@@ -113,8 +113,7 @@ namespace GymApp.Controllers
                 Title = workoutProgramVM.Title,
                 Description = workoutProgramVM.Description,
                 Image = photoResult.Url.ToString(),
-                //AddressId = gymVM.AddressId,
-                //Address = gymVM.Address,
+                
             };
 
             _workoutProgramRepository.Update(workoutProgram);

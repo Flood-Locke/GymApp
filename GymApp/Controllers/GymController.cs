@@ -11,14 +11,12 @@ namespace GymApp.Controllers
     {
         private readonly IGymRepository _gymRepository;
         private readonly IPhotoService _photoService;
-        //private readonly IHttpContextAccessor _httpContextAccessor;
 
         public GymController(IGymRepository gymRepository, IPhotoService photoService)
         {
 
             _gymRepository = gymRepository;
             _photoService = photoService;
-            //_httpContextAccessor = httpContextAccessor;
         }
 
         [HttpGet]

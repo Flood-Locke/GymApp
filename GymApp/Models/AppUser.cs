@@ -8,8 +8,7 @@ namespace GymApp.Models
     {
         public int? YearsOfExperience { get; set; }
         public string? ProfileImageUrl { get; set; }
-        //public string? City { get; set; }
-        // public string? Province { get; set; }
+        
         [ForeignKey("Address")]
         public int? AddressId { get; set; }
         public Address? Address { get; set; }

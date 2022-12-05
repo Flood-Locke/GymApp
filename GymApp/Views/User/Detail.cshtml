@@ -72,8 +72,8 @@
                 <div class="row">
                     <div class="col">
                         <ul class="nav nav-tabs" id="myTab" role="tablist">
-                            <li class="nav-item">
-                                <a class="nav-link active" id="workoutProgram-tab" data-toggle="tab" href="#workoutProgram" role="tab" aria-controls="races" aria-selected="true">Workout Program</a>
+                            <li class="nav-item">aria-controls="workoutProgram"
+                                <a class="nav-link active" id="workoutProgram-tab" data-toggle="tab" href="#workoutProgram" role="tab"  aria-selected="true">Workout Program</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" id="groups-tab" data-toggle="tab" href="#gyms" role="tab" aria-controls="gyms" aria-selected="false">Gyms</a>
@@ -97,13 +97,13 @@
                     <ul class="row feature-list feature-list-sm">                     
                         <li class="col-12 col-md-6 col-lg-4">
                             <div class="card">
-                                <a href="#">
-                                    <img class="card-img-top" src="/img/graphic-product-sidekick.jpg" alt="Card image cap">
+                                <a type="button" asp-controller="WorkoutProgram" asp-action="Index"> 
+                                    <img class="card-img-top" src="/img/barbell.jpg" alt="Card image cap">
                                 </a>
                                 <div class="card-body">
-                                    <a href="#">
-                                        <h4 class="card-title">Sidekick</h4>
-                                        <p class="card-text text-body">Holistic fitness tracking</p>
+                                    <a href="">
+                                        <h4 class="card-title">Workout Programs</h4>
+                                        <p class="card-text text-body">Easy to follow programs</p>
                                     </a>
                                 </div>
                                 <div class="card-footer card-footer-borderless d-flex justify-content-between">
@@ -112,18 +112,6 @@
                                             <li class="list-inline-item"><i class="icon-heart mr-1"></i> 221</li>
                                             <li class="list-inline-item"><i class="icon-message mr-1"></i> 14</li>
                                         </ul>
-                                    </div>
-                                    <div class="dropup">
-                                        <button class="btn btn-sm btn-outline-primary dropdown-toggle dropdown-toggle-no-arrow" type="button" id="SidekickButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                            <i class="icon-dots-three-horizontal"></i>
-                                        </button>
-                                        <div class="dropdown-menu dropdown-menu-sm" aria-labelledby="SidekickButton">
-                                            <a class="dropdown-item" href="#">Save</a>
-                                            <a class="dropdown-item" href="#">Share</a>
-                                            <a class="dropdown-item" href="#">Comment</a>
-                                            <div class="dropdown-divider"></div>
-                                            <a class="dropdown-item" href="#">Report</a>
-                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -141,37 +129,36 @@
                     <div class="row">
                         <div class="col-12 col-md-6 col-lg-4 d-flex">
                             <div class="card">
-                                <a href="#">
-                                    <img class="card-img-top" src="/img/graphic-group-1.png" alt="Card image cap">
+                                <a type="button" asp-controller="Gym" asp-action="Index">
+                                    <img class="card-img-top" src="/img/kettlebell.jpg" alt="Card image cap">
                                 </a>
                                 <div class="card-body">
                                     <a href="#" class="d-block mb-2">
                                         <h4>Pitstop</h4>
                                     </a>
-                                    <span>A lightweight javascript library for scrolling</span>
+                                    <span>Hardcore Gyms</span>
                                 </div>
                                 <ul class="list-group list-group-flush">
                                     <li class="list-group-item"><i class="icon-users">&nbsp;</i> 18 members</li>
-                                    <li class="list-group-item"><i class="icon-folder">&nbsp;</i> 12 projects</li>
                                 </ul>
                                 <div class="card-footer d-flex align-items-center">
                                     <div>
                                         <ul class="list-inline list-spacing-sm">
 
                                             <li class="list-inline-item">
-                                                <img alt="Group member" class="avatar avatar-xs" src="/img/avatar-male-5.jpg">
+                                                <img alt="Group member" class="avatar avatar-xs" src="/img/avatar-male-1.jpg">
                                             </li>
 
                                             <li class="list-inline-item">
-                                                <img alt="Group member" class="avatar avatar-xs" src="/img/avatar-female-4.jpg">
+                                                <img alt="Group member" class="avatar avatar-xs" src="/img/avatar-female-1.jpg">
                                             </li>
 
                                             <li class="list-inline-item">
-                                                <img alt="Group member" class="avatar avatar-xs" src="/img/avatar-male-5.jpg">
+                                                <img alt="Group member" class="avatar avatar-xs" src="/img/avatar-male-2.jpg">
                                             </li>
 
                                             <li class="list-inline-item">
-                                                <img alt="Group member" class="avatar avatar-xs" src="/img/avatar-female-4.jpg">
+                                                <img alt="Group member" class="avatar avatar-xs" src="/img/avatar-female-2.jpg">
                                             </li>
                                         </ul>
                                     </div>
@@ -179,90 +166,6 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-12 col-md-6 col-lg-4 d-flex">
-                            <div class="card">
-                                <a href="#">
-                                    <img class="card-img-top" src="/img/graphic-group-2.png" alt="Card image cap">
-                                </a>
-                                <div class="card-body">
-                                    <a href="#" class="d-block mb-2">
-                                        <h4>Bench</h4>
-                                    </a>
-                                    <span>Account management for financial professionals</span>
-                                </div>
-                                <ul class="list-group list-group-flush">
-                                    <li class="list-group-item"><i class="icon-users">&nbsp;</i> 9 members</li>
-                                    <li class="list-group-item"><i class="icon-folder">&nbsp;</i> 6 projects</li>
-                                </ul>
-                                <div class="card-footer d-flex align-items-center">
-                                    <div>
-                                        <ul class="list-inline list-spacing-sm">
-
-                                            <li class="list-inline-item">
-                                                <img alt="Group member" class="avatar avatar-xs" src="/img/avatar-male-5.jpg">
-                                            </li>
-
-                                            <li class="list-inline-item">
-                                                <img alt="Group member" class="avatar avatar-xs" src="/img/avatar-female-5.jpg">
-                                            </li>
-
-                                            <li class="list-inline-item">
-                                                <img alt="Group member" class="avatar avatar-xs" src="/img/avatar-male-4.jpg">
-                                            </li>
-
-                                            <li class="list-inline-item">
-                                                <img alt="Group member" class="avatar avatar-xs" src="/img/avatar-female-5.jpg">
-                                            </li>
-
-                                        </ul>
-                                    </div>
-                                    <span class="text-small ml-2">+ 5 more</span>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-12 col-md-6 col-lg-4 d-flex">
-                            <div class="card">
-                                <a href="#">
-                                    <img class="card-img-top" src="/img/photo-group-3.jpg" alt="Card image cap">
-                                </a>
-                                <div class="card-body">
-                                    <a href="#" class="d-block mb-2">
-                                        <h4>Seattle</h4>
-                                    </a>
-                                    <span>Creative folk hailing from The Windy City</span>
-                                </div>
-                                <ul class="list-group list-group-flush">
-                                    <li class="list-group-item"><i class="icon-users">&nbsp;</i> 42 members</li>
-                                    <li class="list-group-item"><i class="icon-folder">&nbsp;</i> 7 projects</li>
-                                </ul>
-                                <div class="card-footer d-flex align-items-center">
-                                    <div>
-                                        <ul class="list-inline list-spacing-sm">
-
-                                            <li class="list-inline-item">
-                                                <img alt="Group member" class="avatar avatar-xs" src="/img/avatar-male-4.jpg">
-                                            </li>
-
-                                            <li class="list-inline-item">
-                                                <img alt="Group member" class="avatar avatar-xs" src="/img/avatar-female-2.jpg">
-                                            </li>
-
-                                            <li class="list-inline-item">
-                                                <img alt="Group member" class="avatar avatar-xs" src="/img/avatar-male-4.jpg">
-                                            </li>
-
-                                            <li class="list-inline-item">
-                                                <img alt="Group member" class="avatar avatar-xs" src="/img/avatar-female-5.jpg">
-                                            </li>
-
-                                        </ul>
-                                    </div>
-                                    <span class="text-small ml-2">+ 38 more</span>
-                                </div>
-                            </div>
-                        </div>
-
                     </div>
                     <!--end of row-->
                 </div>
@@ -277,7 +180,7 @@
                             <div class="card">
                                 <div class="card-body">
                                     <div class="media">
-                                        <a href="#" class="mr-3">
+                                        <a class="btn btn-outline-primary" asp-controller="User" asp-action="Index">
                                             <img alt="Daniel Cameron" src="/img/avatar-male-1.jpg" class="avatar">
                                         </a>
                                         <div class="media-body">
@@ -313,50 +216,4 @@
         </div>
     </section>
     <!--end of section-->
-    <footer class="footer-short">
-        <div class="container">
-            <hr>
-            <nav class="row justify-content-between align-items-center">
-                <div class="col-auto">
-                    <ul class="list-inline">
-                        <li class="list-inline-item">
-                            <a href="#">
-                                <img alt="Image" src="/img/logo-gray.svg">
-                            </a>
-                        </li>
-                        <li class="list-inline-item">
-                            <a href="#">Overview</a>
-                        </li>
-                        <li class="list-inline-item">
-                            <a href="#">Documentation</a>
-                        </li>
-                        <li class="list-inline-item">
-                            <a href="#">Changelog</a>
-                        </li>
-                    </ul>
-                </div>
-                <!--end of col-->
-                <div class="col-auto text-sm-right">
-                    <ul class="list-inline">
-                        <li class="list-inline-item">
-                            <a href="#"><i class="socicon-twitter"></i></a>
-                        </li>
-                        <li class="list-inline-item">
-                            <a href="#"><i class="socicon-facebook"></i></a>
-                        </li>
-                    </ul>
-                </div>
-                <!--end of col-->
-            </nav>
-            <!--end of row-->
-            <div class="row">
-                <div class="col">
-                    <small>© 2019 Medium Rare All Rights Reserved</small>
-                </div>
-                <!--end of col-->
-            </div>
-            <!--end of row-->
-        </div>
-        <!--end of container-->
-    </footer>
 </div>

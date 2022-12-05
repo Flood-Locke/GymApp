@@ -34,7 +34,7 @@ namespace GymApp.Controllers
                     Province = user.Address?.Province,
                     YearsOfExperience = user.YearsOfExperience,
                     UserName = user.UserName,
-                    ProfileImageUrl = user.ProfileImageUrl ?? "/img/avatar-male-4.jpg",
+                    ProfileImageUrl = user.ProfileImageUrl ?? "/img/avatar-male-1.jpg",
                     Gyms = user.Gyms,
                     WorkoutPrograms = user.WorkoutPrograms,
                 };
@@ -59,7 +59,7 @@ namespace GymApp.Controllers
                 Province = user.Address?.Province,
                 YearsOfExperience = user.YearsOfExperience,
                 UserName = user.UserName,
-                ProfileImageUrl = user.ProfileImageUrl ?? "/img/avatar-male-4.jpg",
+                ProfileImageUrl = user.ProfileImageUrl ?? "/img/avatar-male-1.jpg",
             };
             return View(userDetailViewModel);
         }

@@ -21,7 +21,7 @@ namespace GymApp.Data
                         new Gym()
                         {
                             Title = "Gym 1",
-                            Image = "https://www.eatthis.com/wp-content/uploads/sites/4/2020/05/running.jpg?quality=82&strip=1&resize=640%2C360",
+                            Image = "https://www.shutterstock.com/image-photo/modern-light-gym-sports-equipment-600w-721723381.jpg",
                             Description = "This is the description of the first Gym",
                             GymCategory = GymCategory.PowerLifting,
                             Address = new Address()
@@ -34,7 +34,7 @@ namespace GymApp.Data
                         new Gym()
                         {
                             Title = "Gym 2",
-                            Image = "https://www.eatthis.com/wp-content/uploads/sites/4/2020/05/running.jpg?quality=82&strip=1&resize=640%2C360",
+                            Image = "https://www.shutterstock.com/image-photo/modern-light-gym-sports-equipment-600w-721723381.jpg",
                             Description = "This is the description of the second Gym",
                             GymCategory = GymCategory.CrossFit,
                             Address = new Address()
@@ -47,7 +47,7 @@ namespace GymApp.Data
                         new Gym()
                         {
                             Title = "Gym 3",
-                            Image = "https://www.eatthis.com/wp-content/uploads/sites/4/2020/05/running.jpg?quality=82&strip=1&resize=640%2C360",
+                            Image = "https://www.shutterstock.com/image-photo/modern-light-gym-sports-equipment-600w-721723381.jpg",
                             Description = "This is the description of the third Gym",
                             GymCategory = GymCategory.WeightLifting,
                             Address = new Address()
@@ -60,7 +60,7 @@ namespace GymApp.Data
                         new Gym()
                         {
                             Title = "Gym 4",
-                            Image = "https://www.eatthis.com/wp-content/uploads/sites/4/2020/05/running.jpg?quality=82&strip=1&resize=640%2C360",
+                            Image = "https://www.shutterstock.com/image-photo/modern-light-gym-sports-equipment-600w-721723381.jpg",
                             Description = "This is the description of the fourth Gym",
                             GymCategory = GymCategory.WeightLifting,
                             Address = new Address()
@@ -81,7 +81,7 @@ namespace GymApp.Data
                         new WorkoutProgram()
                         {
                             Title = "Workout Program 1",
-                            Image = "https://www.eatthis.com/wp-content/uploads/sites/4/2020/05/running.jpg?quality=82&strip=1&resize=640%2C360",
+                            Image = "https://www.shutterstock.com/shutterstock/photos/461236648/display_1500/stock-photo-closeup-of-weightlifter-clapping-hands-before-barbell-workout-at-the-gym-461236648.jpg",
                             Description = "This is the description of the first program",
                             WorkoutProgramCategory = WorkoutProgramCategory.ThreeDayPerWeekBeginner
                            
@@ -89,7 +89,7 @@ namespace GymApp.Data
                         new WorkoutProgram()
                         {
                             Title = "Workout Program 2",
-                            Image = "https://www.eatthis.com/wp-content/uploads/sites/4/2020/05/running.jpg?quality=82&strip=1&resize=640%2C360",
+                            Image = "https://www.shutterstock.com/shutterstock/photos/461236648/display_1500/stock-photo-closeup-of-weightlifter-clapping-hands-before-barbell-workout-at-the-gym-461236648.jpg",
                             Description = "This is the description of the second program",
                             WorkoutProgramCategory = WorkoutProgramCategory.FourDayPerWeekBeginner,                           
                         }
@@ -134,7 +134,7 @@ namespace GymApp.Data
                     await userManager.AddToRoleAsync(newAdminUser, UserRoles.Admin);
                 }
 
-                string appUserEmail = "user@etickets.com";
+                string appUserEmail = "user@fakeemail.com";
 
                 var appUser = await userManager.FindByEmailAsync(appUserEmail);
                 if (appUser == null)

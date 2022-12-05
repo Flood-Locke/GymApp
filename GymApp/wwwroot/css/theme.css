@@ -3912,7 +3912,8 @@ input[type="button"].btn-block {
     background-color: #b3d7ff;
 }
 
-.custom-range::-webkit-slider-runnable-track {
+.custom-range::-webkit-slider-
+nable-track {
     width: 100%;
     height: 0.5rem;
     color: transparent;
@@ -12454,7 +12455,8 @@ article pre + p {
     height: 4.5rem;
 }
 
-    .avatar.avatar-xs {
+    .avatar.
+    xs {
         width: 2.25rem;
         height: 2.25rem;
     }

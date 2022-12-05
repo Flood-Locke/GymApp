@@ -5,7 +5,7 @@
 }
 
 <section class="bg-dark space-lg" data-jarallax data-speed="0.2">
-    <img alt="Image" src="/img/photo-road.jpg" class="bg-image position-absolute opacity-20" />
+    <img alt="Image" src="/img/barbell.jpg" class="bg-image position-absolute opacity-20" />
     <div class="container">
         <div class="row align-items-center justify-content-between">
             <div class="col-12 col-md-6 col-lg-5 section-intro">
@@ -43,7 +43,7 @@
                                     </label>
                                 </div>
                             </div>
-                            <button type="submit" class="btn btn-lg btn-success btn-block">Sign up for RunGroop</button>
+                            <button type="submit" class="btn btn-lg btn-success btn-block">Sign up for GymApp</button>
                         </form>
                     </div>
                 </div>
@@ -86,7 +86,7 @@
                                 }
                                 else
                                 {
-                                    <img class="card-img-top" src="/img/rungroop.png" alt="Card image cap">
+                                    <img class="card-img-top" src="/img/barbell.jpg" alt="Card image cap">
                                 }
                             </a>
                             <div class="card-body">
@@ -103,15 +103,8 @@
                                     </ul>
                                 </div>
                                 <div class="dropup">
-                                    <a type="btn btn-success" asp-controller="WorkoutProgram" asp-action="Detail" asp-route-id="@item.Id"
-                               class="btn btn-sm btn-outline-secondary">View</a>
-                                    <div class="dropdown-menu dropdown-menu-sm" aria-labelledby="SidekickButton">
-                                        <a class="dropdown-item" href="#">Save</a>
-                                        <a class="dropdown-item" href="#">Share</a>
-                                        <a class="dropdown-item" href="#">Comment</a>
-                                        <div class="dropdown-divider"></div>
-                                        <a class="dropdown-item" href="#">Report</a>
-                                    </div>
+                                    <a type="btn btn-success" asp-controller="Gym" asp-action="Detail" asp-route-id="@item.Id"
+                                        class="btn btn-sm btn-outline-secondary">View</a>
                                 </div>
                             </div>
                         </div>

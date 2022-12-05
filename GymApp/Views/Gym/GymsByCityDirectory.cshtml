@@ -6,21 +6,6 @@
     var cities = Model.Cities.DistinctBy(city => city.CityName);
 }
 
-
-<script type="text/javascript">
-    
-    const elements = [...document.getElementsByClassName("li-item")]
-        .map(elem => ({elem, text: elem.querySelector("a").innerText.toUpperCase()}));
-    
-        function filterList(search) 
-        {
-            const term = search.toUpperCase();
-            for (const {elem, text} of elements) {
-                elem.style.display = text.includes(term) ? "" : "none";
-        }
-    }
-</script>
-
 <section class="container">
     <h1>Find Gyms in your city</h1>
     <div class="row">
@@ -46,3 +31,17 @@
         }
     </ul>
 </section>
+
+<script type="text/javascript">
+    
+    const elements = [...document.getElementsByClassName("li-item")]
+        .map(elem => ({elem, text: elem.querySelector("a").innerText.toUpperCase()}));
+    
+        function filterList(search) 
+        {
+            const term = search.toUpperCase();
+            for (const {elem, text} of elements) {
+                elem.style.display = text.includes(term) ? "" : "none";
+        }
+    }
+</script>

@@ -12,7 +12,6 @@ namespace GymApp.Models
         public string Description { get; set; }
         public string? Image { get; set; }
         public WorkoutProgramCategory WorkoutProgramCategory { get; set; }
-        //public int? AddressId { get; set; }
         [ForeignKey("AppUser")]
         public string? AppUserId { get; set; }      
         public AppUser? AppUser { get; set; }

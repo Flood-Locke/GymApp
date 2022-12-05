@@ -2,9 +2,7 @@
 using GymApp.Data;
 using GymApp.Interfaces;
 using GymApp.Models;
-using GymApp;
-
-namespace RunGroopWebApp.Repository
+namespace GymApp.Repository
 {
     public class DashboardRepository : IDashboardRepository
     {

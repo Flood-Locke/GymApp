@@ -107,7 +107,7 @@ namespace GymApp.Tests.Repository
             var gym = new Gym()
             {
                 Title = "Gym 1",
-                Image = "https://www.eatthis.com/wp-content/uploads/sites/4/2020/05/running.jpg?quality=82&strip=1&resize=640%2C360",
+                Image = "https://www.shutterstock.com/shutterstock/photos/721723381/display_1500/stock-photo-modern-light-gym-sports-equipment-in-gym-barbells-of-different-weight-on-rack-721723381.jpg",
                 Description = "This is the description of the first gym",
                 GymCategory = GymCategory.PowerLifting,
                 Address = new Address()
@@ -130,5 +130,136 @@ namespace GymApp.Tests.Repository
             //result.First().Title.Should().Be("Gym 1");
         }
 
+        [Fact]
+        public async void GymRepository_SuccessfulDelete_ReturnsTrue()
+        {
+            //Arrange
+            var gym = new Gym()
+            {
+                Title = "Gym 1",
+                Image = "https://www.shutterstock.com/image-photo/modern-light-gym-sports-equipment-barbells-721723381",
+                Description = "This is the description of the first gym",
+                GymCategory = GymCategory.PowerLifting,
+                Address = new Address()
+                {
+                    Street = "123 Main St",
+                    City = "Meath",
+                    Province = "Leinster"
+                }
+            };
+            var dbContext = await GetDbContext();
+            var gymRepository = new GymRepository(dbContext);
+
+            //Act
+            gymRepository.Add(gym);
+            var result = gymRepository.Delete(gym);
+            var count = await gymRepository.GetCountAsync();
+
+            //Assert
+            result.Should().BeTrue();
+            count.Should().Be(0);
+        }
+
+        [Fact]
+        public async void GymRepository_GetCountAsync_ReturnsInt()
+        {
+            //Arrange
+            var gym = new Gym()
+            {
+                Title = "Gym 1",
+                Image = "https://www.shutterstock.com/image-photo/modern-light-gym-sports-equipment-barbells-721723381",
+                Description = "This is the description of the first gym",
+                GymCategory = GymCategory.PowerLifting,
+                Address = new Address()
+                {
+                    Street = "123 Main St",
+                    City = "Meath",
+                    Province = "Leinster"
+                }
+            };
+            var dbContext = await GetDbContext();
+            var gymRepository = new GymRepository(dbContext);
+
+            //Act
+            gymRepository.Add(gym);
+            var result = await gymRepository.GetCountAsync();
+
+            //Assert
+            result.Should().Be(1);
+
+        }
+        [Fact]
+        public async void GymRepository_GetAllProvinces_ReturnsList()
+        {
+            //Arrange
+            var dbContext = await GetDbContext();
+            var gymRepository = new GymRepository(dbContext);
+
+            //Act
+            var result = await gymRepository.GetAllProvinces();
+
+            //Assert
+            result.Should().NotBeNull();
+            result.Should().BeOfType<List<Province>>();
+        }
+        [Fact]
+        public async void GymRepository_GetGymsByProvince_ReturnsList()
+        {
+            //Arrange
+            var province = "Leinster";
+            var gym = new Gym()
+            {
+                Title = "Gym 1",
+                Image = "https://www.shutterstock.com/image-photo/modern-light-gym-sports-equipment-barbells-721723381",
+                Description = "This is the description of the first gym",
+                GymCategory = GymCategory.PowerLifting,
+                Address = new Address()
+                {
+                    Street = "123 Main St",
+                    City = "Meath",
+                    Province = "Leinster"
+                }
+            };
+            var dbContext = await GetDbContext();
+            var gymRepository = new GymRepository(dbContext);
+
+            //Act
+            gymRepository.Add(gym);
+            var result = await gymRepository.GetGymsByProvince(province);
+
+            //Assert
+            result.Should().NotBeNull();
+            result.Should().BeOfType<List<Gym>>();
+            result.First().Title.Should().Be("Gym 1");
+        }
+        [Fact]
+        public async void GymRepository_GetGymsByProvince_ReurnsEmpty()
+        {
+            //Arrange
+            var province = "Munster";
+            var gym = new Gym()
+            {
+                Title = "Gym 1",
+                Image = "https://www.shutterstock.com/image-photo/modern-light-gym-sports-equipment-barbells-721723381",
+                Description = "This is the description of the first gym",
+                GymCategory = GymCategory.PowerLifting,
+                Address = new Address()
+                {
+                    Street = "123 Main St",
+                    City = "Meath",
+                    Province = "Leinster"
+                }
+            };
+            var dbContext = await GetDbContext();
+            var gymRepository = new GymRepository(dbContext);
+
+            //Act
+            gymRepository.Add(gym);
+            var result = await gymRepository.GetGymsByProvince(province);
+
+            //Assert
+            result.Should().BeEmpty();
+            
+        }
     }
 }
