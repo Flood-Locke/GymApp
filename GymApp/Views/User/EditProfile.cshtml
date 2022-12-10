@@ -67,26 +67,7 @@
                                     ? "/img/avatar-male-1.jpg"
                                     : Model.ProfileImageUrl;
                                 }
-                                <img alt="Image" src="@imageUrl" class="avatar avatar-lg mb-3 mb-md-0" />
-                                <div class="media-body">
-                                    <form asp-action="EditProfile" enctype="multipart/form-data">
-                                        <label asp-for="Image" class="custom-file mb-2" for="file2">
-                                            <input asp-for="Image" type="file" id="file2" class="custom-file-input height-0" oninput="submitProfileImage();" />
-                                            <span class="btn btn-primary"><i class="icon-upload-to-cloud">&nbsp;</i>Upload</span>
-                                            <span asp-validation-for="Image" class="text-danger"></span>
-                                            <button id="submit-image-button" type="submit" hidden></button>
-                                        </label>
-                                        <div>
-                                            <small>For best results, use an image at least 256px by 256px in either .jpg or .png format</small>
-                                        </div>
-
-                                        <input asp-for="City" hidden />
-                                        <input asp-for="Province" hidden />
-                                        <input asp-for="YearsOfExperience" hidden />
-
-                                    </form>
-                                </div>
-                            </div>
+                                <img alt="Image" src="@imageUrl" class="avatar avatar-lg mb-3 mb-md-0" />                                       
                         </div>
                         <!--end of col-->
                     </div>
@@ -102,7 +83,17 @@
                     <div class="row">
                         <!--end of col-->
                         <div class="col-12 col-md-8 order-md-1">
-                            <form asp-action="EditProfile" method="post" class="row">
+                            <form method="post" asp-action="EditProfile" enctype="multipart/form-data">
+                                <input type="hidden" value="AddressId" id="AddressId" />
+                                <div class="col-6">
+                                        <div class="form-group">
+                                            <div class="form-group">
+                                                <label asp-for="Image">Image</label>
+                                                <input asp-for="Image" type="file" class="form-control form-control-lg" placeholder="Image">
+                                                <span asp-validation-for="Image" class="text-danger"></span>
+                                            </div>
+                                    </div>
+                                </div>
                                 <div class="col-6">
                                     <div class="form-group">
                                         <label asp-for="City">City:</label>
@@ -162,7 +153,7 @@
                                     We will never distribute your email address to third parties. Read about email communication in
                                     our privacy policy.
                                 </span>
-                                <a href="#">View privacy policy &rsaquo;</a>
+                                <a asp-controller="Home" asp-action="Privacy">View privacy policy &rsaquo;</a>
                             </div>
                         </div>
                         <!--end of col-->
@@ -301,3 +292,19 @@
         document.getElementById("submit-image-button").click();
     }
 </script>
+@*<script src="https://widget.cloudinary.com/v2.0/global/all.js" type="text/javascript"></script>
+     <script type="text/javascript">  
+  var widget = cloudinary.applyUploadWidget({ 
+    cloudName: 'demo', 
+    uploadPreset: 'blog_upload' }, 
+    (error, result) => { 
+       if (!error && result && result.event === "success") { 
+      		console.log('Done uploading..: ', result.info); 
+   	      }
+
+     });    
+
+   document.getElementById("upload_widget").addEventListener("click", function(){
+    myWidget.open();
+  }, false);
+     </script>*@

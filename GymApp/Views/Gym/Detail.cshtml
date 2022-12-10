@@ -7,11 +7,8 @@
                 <div class="col">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item">
-                            <a href="index.html">Home</a>
-                        </li>
-                        <li class="breadcrumb-item">
-                            <a href="pages-app.html">Find</a>
-                        </li>
+                            <a asp-controller="Gym" asp-action="Index">Home</a>
+                        </li>                        
                         <li class="breadcrumb-item active" aria-current="page">Gyms in @Model.Address.City, @Model.Address.Province</li>
                     </ol>
                 </div>

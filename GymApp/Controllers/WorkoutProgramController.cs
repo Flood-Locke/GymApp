@@ -84,9 +84,12 @@ namespace GymApp.Controllers
         {
             if (!ModelState.IsValid)
             {
+
                 ModelState.AddModelError("", "Failed to edit workout program");
                 return View(workoutProgramVM);
             }
+
+
 
             var userWorkoutProgram = await _workoutProgramRepository.GetByIdAsyncNoTracking(id);
 

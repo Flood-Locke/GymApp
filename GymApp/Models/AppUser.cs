@@ -12,7 +12,7 @@ namespace GymApp.Models
         [ForeignKey("Address")]
         public int? AddressId { get; set; }
         public Address? Address { get; set; }
-        public ICollection<Gym> Gyms { get; set; }
-        public ICollection<WorkoutProgram> WorkoutPrograms { get; set; }
+        public ICollection<Gym>? Gyms { get; set; }
+        public ICollection<WorkoutProgram>? WorkoutPrograms { get; set; }
     }
 }

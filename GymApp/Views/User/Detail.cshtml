@@ -32,7 +32,7 @@
                         <div class="media-body">
                             <div class="mb-3">
                                 <h1 class="h2 mb-2">@Model.UserName</h1>
-                                <span class="text-muted"><i class="icon-location"></i>@Model.Location</span>
+                                <span class="text-muted"><i class="icon-location"></i>@Model.City</span>
                             </div>
                             <p class="text-muted">Years of Experience: @Model.YearsOfExperience</p>
                             <p>
@@ -47,13 +47,6 @@
                                     <button class="btn btn-outline-primary dropdown-toggle dropdown-toggle-no-arrow" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                         <i class="icon-dots-three-horizontal"></i>
                                     </button>
-                                    <div class="dropdown-menu dropdown-menu-sm" aria-labelledby="dropdownMenuButton" x-placement="bottom-start" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(0px, 36px, 0px);">
-                                        <a class="dropdown-item" href="#">Add to group</a>
-                                        <a class="dropdown-item" href="#">Share Profile</a>
-                                        <div class="dropdown-divider"></div>
-                                        <a class="dropdown-item" href="#">Block</a>
-                                        <a class="dropdown-item" href="#">Report</a>
-                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -72,7 +65,7 @@
                 <div class="row">
                     <div class="col">
                         <ul class="nav nav-tabs" id="myTab" role="tablist">
-                            <li class="nav-item">aria-controls="workoutProgram"
+                            <li class="nav-item"aria-controls="workoutProgram">
                                 <a class="nav-link active" id="workoutProgram-tab" data-toggle="tab" href="#workoutProgram" role="tab"  aria-selected="true">Workout Program</a>
                             </li>
                             <li class="nav-item">

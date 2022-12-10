@@ -7,10 +7,9 @@
                 <div class="col">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item">
-                            <a href="index.html">Home</a>
+                            <a asp-controller="Home" asp-action="Index">Home</a>
                         </li>
-                        <li class="breadcrumb-item">
-                            <a href="pages-app.html">Find</a>
+                        <li class="breadcrumb-item active" aria-current="page">Find
                         </li>
                     </ol>
                 </div>
@@ -42,7 +41,7 @@
                     </div>
                     <div>
                         <div class="btn-group mb-2">
-                            <button type="button" class="btn btn-success btn-lg">Follow Program</button>
+                            <button type="button" onclick="myalert()" class="btn btn-success btn-lg">Follow Program</button>
                         </div>
                     </div>
                 </div>
@@ -58,9 +57,9 @@
             <div class="row justify-content-between">
                 <div class="col-12 col-md-8 col-lg-7">
                     <h5 class="mb-4">Overview</h5>
-                    <article>
+                    <a href="@Model.Description">
                         @Model.Description
-                    </article>
+                    </a>
                     <hr>
                     <h5 class="mb-4">Discussion</h5>
                     <div class="card">
@@ -139,4 +138,11 @@
         <!--end of container-->
     </section>
 </div>
+
+
+<script>
+    function myalert() {
+        alert("The feature to follow programs will be added soon!");
+    }
+</script>
 
