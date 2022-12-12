@@ -1,4 +1,5 @@
 ﻿using GymApp.Data;
+using GymApp.Interfaces;
 using GymApp.Models;
 using GymApp.ViewModels;
 using Microsoft.AspNetCore.Identity;
@@ -10,9 +11,11 @@ namespace GymApp.Controllers
     {
         private readonly UserManager<AppUser> _userManager;
         private readonly SignInManager<AppUser> _signInManager;
-        
-        public AccountController (UserManager<AppUser> userManager, SignInManager<AppUser> signInManager)
+        private readonly IUserRepository _userRepository;
+
+        public AccountController (IUserRepository userRepository, UserManager<AppUser> userManager, SignInManager<AppUser> signInManager)
         {
+            _userRepository = userRepository;
             _userManager = userManager;
             _signInManager = signInManager;
         }
@@ -81,9 +84,10 @@ namespace GymApp.Controllers
 
             if (newUserResponse.Succeeded)
                 await _userManager.AddToRoleAsync(newUser, UserRoles.User);
-
+           
             return RedirectToAction("Index", "Gym");
         }
+
         [HttpGet]
         public async Task<IActionResult> Logout()
         {

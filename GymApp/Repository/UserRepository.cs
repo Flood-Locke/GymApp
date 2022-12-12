@@ -16,7 +16,8 @@ namespace GymApp.Repository
 
         public bool Add(AppUser user)
         {
-            throw new NotImplementedException();
+            _context.Add(user);
+            return Save();
         }
 
         public bool Delete(AppUser user)

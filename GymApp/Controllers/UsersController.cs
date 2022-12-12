@@ -43,24 +43,45 @@ namespace GymApp.Controllers
             return View(result);
         }
 
-        [HttpGet]
-        [Authorize]
-        public async Task<IActionResult> Detail(/*string id*/)
+        //[HttpGet]
+        //[Authorize]
+        //public async Task<IActionResult> Detail(/*string id*/)
+        //{
+        //    var user = await _userManager.GetUserAsync(User);
+        //    //var user = await _userRepository.GetUserById(id);
+        //    if (user == null)
+        //    {
+        //        return RedirectToAction("Index", "Users");
+        //    }
+
+            
+        //    var userDetailViewModel = new UserDetailViewModel()
+        //    {
+        //        Id = user.Id,
+        //        City = user.Address?.City,
+        //        Province = user.Address?.Province,
+                
+        //        YearsOfExperience = user.YearsOfExperience,
+        //        UserName = user.UserName,
+        //        ProfileImageUrl = user.ProfileImageUrl ?? "/img/avatar-male-1.jpg",
+        //    };
+        //    return View(userDetailViewModel);
+        //}
+        [HttpGet]        
+        public async Task<IActionResult> Detail(string id)
         {
-            var user = await _userManager.GetUserAsync(User);
-            //var user = await _userRepository.GetUserById(id);
+            var user = await _userRepository.GetUserById(id);
             if (user == null)
             {
                 return RedirectToAction("Index", "Users");
             }
 
-            
+
             var userDetailViewModel = new UserDetailViewModel()
             {
                 Id = user.Id,
                 City = user.Address?.City,
                 Province = user.Address?.Province,
-                
                 YearsOfExperience = user.YearsOfExperience,
                 UserName = user.UserName,
                 ProfileImageUrl = user.ProfileImageUrl ?? "/img/avatar-male-1.jpg",
